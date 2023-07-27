@@ -35,7 +35,8 @@ It creates a new tab in the developer tools where you can view React elements.
 Prior to ES6 the only way to declare variables was with var keyword. But with the recent updates
 you can declare variables with;
 
-a] const 
+a] const ; Constant is a variable that cannot be changed unlike variables in the past which could be overwritten.
+b] let ; 
 
 
 */
