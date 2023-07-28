@@ -31,12 +31,17 @@ It creates a new tab in the developer tools where you can view React elements.
 */
 
 /* Chapter 2: Emerging Javascript
+
 *** Declaring variables in ES6  ***
 Prior to ES6 the only way to declare variables was with var keyword. But with the recent updates
 you can declare variables with;
 
 a] const ; Constant is a variable that cannot be changed unlike variables in the past which could be overwritten.
 b] let ; with the let keyword we can scope a variable to any code block
+by using let we are able to protect the value of the global variable.
 
+** Template String **
+
+This provide us with an alternative to string concatenation.
 
 */
