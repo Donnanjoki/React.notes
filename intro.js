@@ -36,7 +36,7 @@ Prior to ES6 the only way to declare variables was with var keyword. But with th
 you can declare variables with;
 
 a] const ; Constant is a variable that cannot be changed unlike variables in the past which could be overwritten.
-b] let ; 
+b] let ; with the let keyword we can scope a variable to any code block
 
 
 */
