@@ -43,5 +43,23 @@ by using let we are able to protect the value of the global variable.
 ** Template String **
 
 This provide us with an alternative to string concatenation.
+They also allow us to insert variables into a string.
+>>>> unlike traditional string concatenation of string composition;
+console.log(lastName + "," + firstName + "" + middleName)
+>>>with template strings we can create one string and add on the variables by surrounding them with $
+console.log(`${lastName}, ${firstName} ${middleName}`)
+
+Template strings honor whitespaces, which make it easier to draft up email templates, code examples or anything that has white spaces.
+
+
+**** Default Parameters ***
+
+Note::; Default parameters enable you to initialize a function with default values if arguments are not supplied to the function call. This way it makes ones functions easier to read and less error-prone.
+Hence avoiding errors that step from passing in undefined arguments and destructuring objects that don't exist.
+
+**Arrow Functions**
+By using the arrow functions you can create functions without using the function keyword.
+
+
 
 */
