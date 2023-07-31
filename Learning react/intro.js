@@ -118,12 +118,99 @@ lordify(regularPerson) //Bill of Canterbury
 // Example: var [,,thirdResort] = ["Kirkwood", "Squaw", "Alpine"]
 console.log(thirdResort) //Alpine
 
-                    ii) Object Literal Enhancement 
+                ii) Object Literal Enhancement 
 This is the opposite of destructuring. It involves putting back together, that is restructuring.
-We can also create object methods with object literal enhancement or restructuring.
+>>> We can also create object methods with object literal enhancement or restructuring.
+// Example:
 
 var name = "Tallac"
 var elevation = 9738
 
+ var print = function () {
+    console.log(`Mt. ${this.name} is ${this.elevation} feet tall`)
+ }
+ var funHike = {name, elevation, print}
+
+ funHike.print () // Mt. Tallac is 9378 feet tall
+
+>>When defining object methods it is no longer necessary to use the function keyword.
+//Object literal enhancement allows us to pull global variables into objects and reduce typing by making the function keyword unnecessary.
+
+Example: Old Way
+// 
+var skier = {
+    name: name,
+    sound: sound,
+    powerYell: function() {
+        var yell = this.sound.toUpperCase()
+        console.log(`${yell} ${yell} ${yell}!!!`)
+    },
+    speed: function(mph) {
+        this.speed = mph
+        console.log('speed:',mph)
+    }
+}
+
+Example: New Way
+// const skier = {
+    name,
+    sound,
+    powerYell() {
+        let yell = this.sound.toUpperCase()
+        console.log(`${yell} ${yell} ${yell}!!!`)
+    },
+    speed(mph) {
+        this.speed = mph
+        console.log('speed:', mph)
+    }
+}
+
+                   iii) The spread Operator(...)
+The spread operator allows us to combine the contents of arrays.
+
+//Example:
+var peaks =["Tallac", "Ralston", "Rose"]
+var canyons = ["ward","Blackwood"]
+var tahoe = [...peaks,...canyons]
+
+console.log(tahoe.join(',')) // Tallac, Ralston, Rose, Ward, Blackwood
+
+>. The spread operator also allows us to get some or the rest of the items in the array.
+
+//Example: var lakes = ["Donner", "Marlette", "Fallen Leaf", "Cascade"]
+var [first,...rest] = lakes
+console.log(rest.join(",")) //"Marlette,Fallen Leaf, Cascade"
+
+>. The spread operator can also be used to collect function arguments as an array.
+
+>. The spread operator can also be used for objects.
+//Example: 
+var morning = {
+    breakfast: "oatmeal",
+    lunch: "Peanut butter and jelly"
+}
+var dinner = "mac and cheese"
+
+var backpackingMeals = {
+    ...morning,
+    dinner
+}
+
+console.log(backpackingMeals) // {breakfast: "oatmeal",
+                                 lunch: "Peanut butter and jelly"
+                                 dinner: "mac and cheese"
+
+
+                                   **** E]Promises ***
+
+
+
+                                      **** F] Classes ****
+>.Previously there were no js classes. 
+Types were defined by functions, where we had to create a function and then define methods on the function on the function object using a prototype.
+ 
+                                     **** ES6 Modules ****
+
+                                    **** CommonJS ****
 
 */
