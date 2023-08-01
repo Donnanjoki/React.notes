@@ -1,6 +1,6 @@
-// Book: Learning React
+//                                           #### Book: Learning React ####
 
-/* Chapter one:
+/*                             ***** Chapter one *****
 Built: By Facebook, 2013
 Built to cater to large-scale, data-driven websites.
 
@@ -30,7 +30,7 @@ It creates a new tab in the developer tools where you can view React elements.
 
 */
 
-/* Chapter 2: Emerging Javascript
+/*                                       ***** Chapter 2: Emerging Javascript *****
 
                          **** A] Declaring variables in ES6  ****
 Prior to ES6 the only way to declare variables was with var keyword. But with the recent updates
@@ -45,9 +45,12 @@ by using let we are able to protect the value of the global variable.
 This provide us with an alternative to string concatenation.
 They also allow us to insert variables into a string.
 >>>> unlike traditional string concatenation of string composition;
-console.log(lastName + "," + firstName + "" + middleName)
+
+console.log(lastName + "," + firstName + "" + middleName);
+
 >>>with template strings we can create one string and add on the variables by surrounding them with $
-console.log(`${lastName}, ${firstName} ${middleName}`)
+
+console.log(`${lastName}, ${firstName} ${middleName}`);
 
 Template strings honor whitespaces, which make it easier to draft up email templates, code examples or anything that has white spaces.
 
@@ -210,6 +213,7 @@ console.log(backpackingMeals) // {breakfast: "oatmeal",
 Types were defined by functions, where we had to create a function and then define methods on the function on the function object using a prototype.
  
                                      **** ES6 Modules ****
+
 
                                     **** CommonJS ****
 
