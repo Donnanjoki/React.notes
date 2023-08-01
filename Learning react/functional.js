@@ -172,6 +172,7 @@ Notice that the returned object is wrapped in parentheses. With arrow functions,
 
 
          B]] PURE FUNCTIONS
+
 >. A pure function is a function that returns a value that is computed based on its arguments.
 >. Pure functions take at least one argument and always return a value or another function.
 >. They do not cause side effects, set global variables or change anything about application state.
@@ -192,14 +193,14 @@ When writing function, do try to follow these three rules.
  const frederick = {
     name: "Frederick Douglass",
     canRead: false,
-    canWrite: false;
+    canWrite: false
  }
 
  const selfEducate = person =>
  ({
     ...person,
     canRead: true,
-    canWrite: true;
+    canWrite: true
  })
 
 console.log(selfEducate(frederick));
@@ -209,19 +210,22 @@ output:
 //{name: "Frederick Douglass", canRead: true, canWrite: true}
 // {name: "Frederick Douglass", canRead: false, canWrite: false}
 
+Explanation: This version of selfEducate is a pure function as it computes a value based on 
+the argument that was sent to it. It also returns a new person object without mutating the arguments sent
+to it hence no side effects.
 
 // Example of an impure function:
 
 const frederick = {
      name: "Frederick Douglass",
     canRead: false,
-    canWrite: false;
+    canWrite: false
 }
 
 const selfEducate = (person) => {
  person.canRead = true;
  person.canWrite = true;
- return person;
+ return person
 }
 console.log( selfEducate(frederick) );
 console.log( frederick );
@@ -239,7 +243,7 @@ Invoking this function mutates the objects that are sent to it.
 var frederick = {
  name: "Frederick Douglass",
  canRead: false,
- canWrite: false;
+ canWrite: false
 }
 
 function selfEducate() {
@@ -247,10 +251,16 @@ function selfEducate() {
  frederick.canWrite = true;
  return frederick;
 }
-selfEducate()
-console.log( frederick )
+selfEducate();
+console.log( frederick );
 
 Output
 // {name: "Frederick Douglass", canRead: true, canWrite: true}
+
+Explanation: Here selfEducate is also impure as it does not take any arguments and does not
+return a value or a function. It also changes the variable outside of its scope.
+
+
+C
 
 */
