@@ -500,31 +500,80 @@ continuity....,
 >. Recursion is another  functional technique that works well with asynchronous processes.
 Functions can recall themselves when they are ready.
    // Example:
+   Below the countdown function has been modified to count down with a delay.
+   This modified version of the countdown can be used to create a countdown clock.
 
+   const countdown = (value, fn, delay = 1000) => {
+    fn(value)
+    return (value > 0) ?
+       setTimeout(() => countdown(value-1, fn), delay) :
+       value
+   }
 
+   const log = value => console.log(value)
+   countdown(10, log)
 
-
+   Explanation: Above we create a 10-second countdown by initially invoking countdown once with the number 10 in a function that logs countdown.
+   Instead of recalling itself right away, the countdown function waits one second before recalling itself, thus creating a clock.
 
 >. Recursion is a good technique for searching data structures. YOU can use recursion to iterate through subfolders until a folder containing only files 
-is identified. You can also iterate through the HTML DOM until you find an element that does not contain any children.
-    // Example:
+is identified. You can also use recursion to iterate through the HTML DOM until you find an element that does not contain any children.
 
-
-
-
-
-
-
+// Example: check example in the book.
 
  f]] Composition
 
 >. Functional programs break up their logic into small, pure functions that are focused on specific tasks.
+>. Eventually you will need to pull these smaller functions together, combine them, call them in series or parallel or compose them into larger functions 
+until you have an application.
+
+>. Composition has varying implementations, patterns and techniques.
+           >>>>Chaining
+>. An example is chaining, whereby Javascript functions can be chained together using dot notation to act on the return value of the previous function.
+
+// Example: Below we're chaining together replace methods with dot notation to transform a string.
+          const template = "hh:mm:ss:tt"
+          const clockTime = template.replace("hh", "03")
+          .replace("mm", "33")
+          .replace("ss", "33")
+          .replace("tt","PM")
+
+          console.log(clockTime)
+
+          //"03:33:33 PM"
+    
+          Explanation: Above the template is a string. By chaining replace methods to the end of the template string, we replace
+          hours, minutes, seconds and time of day in the string with new values.
+          >. The template itself remains intact and can be reused to create more clock time displays.
+
+>. The goals of composition is to generate a higher order of function by combining simpler functions.
+      
+// Example:
+      const both = compose(
+        civilianHours,
+        appendAMPM
+      )
+      both(new Date())
+
+      Explanation: The above approach is not only cleaner but easier to scale.
+      Because we can add more functions at any point. It also makes it easy to change the order of composed functions.
+
+>.The composed function is a higher order function. It takes functions as arguments and returns a single value.
+       
+      // Example: 
+      const compose =
+      (...fns) =>
+      (arg) =>
+       fns.reduce((composed, f) => f(composed), arg);
 
 
+      Explanation: Above the compose function takes in functions as arguments and returns a single function.
+      Above the spread operator is used to turn those function arguments into an array called fns.
+      A function is then returned that expects one argument, arg. When this function is invoked, the fns array is piped starting with the argument we want
+      to send through the function. The argument becomes the initial value for composed and then each iteration of the reduced callback returns.
 
-
-
-
+      The callback takes 2 arguments that is composed and a function f. Each function is invoked with compose which is the result of the previous function output.
+      Eventually the last function will be invoked and the last result returned.
 
 
 */
