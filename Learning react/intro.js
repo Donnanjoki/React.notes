@@ -92,7 +92,8 @@ ES6 offers us new ways of working with object and arrays for scoping variables w
               i) Destructuring Assignment
 This assignment allows you to locally scope fields within an object and declare which values will be used.
 Destructuring is more declarative, meaning that our code is more descriptive about what we are trying to accomplish.
-//Example: destructuring incoming function arguments
+
+// Example: destructuring incoming function arguments
 ...this function logs a person's name as a lord.....
 var lordify = regularPerson => {
     console.log(`${regularPerson.firstName}` of Canterbury)
@@ -136,7 +137,7 @@ var elevation = 9738
 
  funHike.print () // Mt. Tallac is 9378 feet tall
 
->>When defining object methods it is no longer necessary to use the function keyword.
+>> When defining object methods it is no longer necessary to use the function keyword.
 //Object literal enhancement allows us to pull global variables into objects and reduce typing by making the function keyword unnecessary.
 
 Example: Old Way

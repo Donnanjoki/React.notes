@@ -261,6 +261,270 @@ Explanation: Here selfEducate is also impure as it does not take any arguments a
 return a value or a function. It also changes the variable outside of its scope.
 
 
-C
+C]] Data Transformation
+
+Functional Programming is all about transforming data from one form to another.
+These copies are transformed using functions, hence making cose less imperative and complex.
+>. To be proficient with functional programming you must master two core functions thats is;
+  
+i) Array.map  
+
+  >. This array function is essential to functional programming.
+  >. Rather than use a predicate, the Array.map takes a function as its argument.
+
+  // Example: const highSchools = schools.map(schools => `$[school] High School`)
+  console.log(highSchools.join("\n"))
+
+  output:
+  // Yorktown High School
+  // Washington & Lee High School
+  // Wakefield High School
+  
+  Explanation: In the above the map function has been used to append "High school"
+  
+  // Example 1: Creating a new array of objects based on the original.
+   const editName = (oldName, name, arr) =>
+   arr.map(item => {
+    if (item.name === oldName) {
+        return {
+            ...item,
+            name
+        }
+    } else {
+        return item
+    }
+   })
+
+   //Example 2: Can also be written as so:
+   const editName = (oldName, name, arr) =>
+   arr.map(item=>(item.name === oldName) ?
+   ({...item,name}) :
+   item
+   )
+
+// Example 3: We can also transform an array into an object by combining Object.keys with Array.map which returns an array
+of keys from an object using Array.map and Object.keys
+
+const schools = {
+    "Yorktown": 10,
+    "Washington & Lee": 2
+    "Wakefield": 5
+}
+
+const schoolArray = Object.keys(schools).map(key =>
+    ({
+        name: key,
+        wins: schools[key]
+    })
+    )
+    console.log(schoolArray)
+
+   output //
+   [
+    {
+    name: "Yorktown",
+    wins: 10
+   },
+   {
+    name: "Washington & Lee",
+    wins: 2
+   },
+   {
+    name: "Wakefield",
+    wins: 5
+   }
+]
+
+  ii) Array.reduce
+
+  >. The reduce and reduceRight functions can be used to transform an array into any value, including a number, string,
+  Boolean, object or even a function.
+  >. The array.reduceRight works the same as reduce, the key difference is that the Array.reduceRight starts reducing from the end rather than from the beginning.
+
+  // Example:  We can transform arrays into completely different arrays using reduce.
+  const colors = ["red", "red", "green", "blue", "green"];
+
+  const distinctColors = colors.reduce(
+    (distinct, color) =>
+        (distinct.indexOf(color) !== -1)?
+        distinct :
+        [...distinct, color],
+    []    
+  )
+
+  console.log(distinctColors)
+
+  //output ["red","green","blue"]
+
+  Explanation: In the above the colors is reduced to an array of distinct values.
+  The second argument sent to the reduce function is an empty array. This will be the initial value for distinct.
+  When the distinct array does not already contain a specific color, it will be added.
+  Otherwise it will be skipped, and the current distinct array will be returned.
+
+>. Other core functions that transform data from one type to another include:
+
+   iii) Array.join function : this is an inbuilt JavaScript method which we can use to extract a delimited string from our array.
+       // Example:
+
+       const schools = [
+        "Yorktown",
+        "Washington & Lee",
+        "Wakefield"
+       ]
+
+       console.log(schools.join(",")) // "Yorktown, Washington & Lee, Wakefield"
+
+
+     iv) Array.filter 
+     >. This is a JavaScript function which produces a new array from a source array.
+     This function takes a predicate as its only argument.
+     A predicate is a function that always returns a Boolean value: true or false.
+     The Array.filter invokes this predicate once for every item in the array.
+     That item is then passed to the predicate as an argument and the return value is used to decide is that item shall be added
+     to the new array.
+     
+     // Example: The filter is used below in checking if every school begins with"W"
+     const wSchools = schools.filter(school => schools[0] === "W");
+     console.log(wSchools) // ["Washington & Lee", "Wakefield"]
+
+
+    >. When its time to remove an item from an array we should use Array.filter over Array.pop or Array.splice because Array.filter is immutable.
+    // Example:
+    Below the cutSchool function returns new arrays that filter out specific school names
+    
+          const cutSchool = (cut, list) =>
+         list.filter(school => school! == cut);
+
+        console.log(cutSchool("Washington & Lee", schools).join("*"));
+        output//"Yorktown * Wakefield"
+
+Note: map and reduce are the main weapons of any functional programmer, hence to be a proficient JS Engineer, you must
+master these function.
+
+ D]] Higher-Order Functions
+
+ >. Higher-order functions are functions that manipulate other functions.
+ >. They can take functions in as argument, or return functions or both.
+ >. The first category of higher-order functions are functions that expect other functions as arguments.
+ 
+ // Example of a higher-order function :
+ In the Example below invokeIf callback function will test a condition and invoke on callback function when it is true and another callback
+ function when the condition is false.;
+
+     const invokeIf = (condition, fnTrue, fnFalse) =>
+     (condition) ? fnTrue() : fnFalse()
+
+     const showWelcome = () =>
+     console.log("Welcome!!!")
+
+     const showUnauthorized = () =>
+     console.log("Unauthorized!!!")
+
+     invokeIf(true, showWelcome, showUnauthorized) //"Welcome"
+     invokeIf(false,showWelcome, showUnauthorized ) // "unauthorized"
+        
+
+    Explanation: invokeIf expects two functions; one for true and one for false.
+    This is demonstrated by sending both showWelcome and showUnauthorized to invokeIf.
+    When the condition is true, showWelcome is invoked. When the condition is false, show unauthorized is invoked.
+ 
+ >. Such include Array.map, Array.filter and Array.reduce which all take functions as arguments.
+ >. Higher-order functions that return other functions can help us handle the complexities associated with asynchronicity in Javascript
+ >. They can help us create functions that can be used or reused at our convenience.
+
+ >. Currying is a functional technique that involves the use of higher-order functions.
+ >.  It is a practice of holding on to some of the values needed to complete an operation, until the rest can be supplied at a later point in time.
+ >. This is achieved through the use of a function that returns another function, the curried function.
+
+ // Example of currying :
+       const userLogs = userName => message =>
+       console.log(`${userName} -> ${message}`)
+
+       const log = userLogs("grandpa23")
+       
+       log("attempted to load 20 fake members")
+       getFakeMembers(20).then(
+        members =>log(`successfully loaded ${members.length} members`),
+        error => log("encountered an error loading members")
+       )
+
+      // grandpa23 -> attempted to load 20 fake members
+      // grandpa23 -> successfully loaded 20 members
+     // grandpa23 -> attempted to load 20 fake members
+    // grandpa23 -> encountered an error loading members
+
+         Explanation: the userLogs is the higher-order function. The log function is produced from userLogs, and 
+         every time the log function is used, "grandpa23" is prepended to the message.
+
+ E]] Recursion
+
+ >. Recursion is a technique that involves creating functions that recall themselves.
+ >. Often we are faced with a challenge that involves a loop, a recursive function can be used instead.
+ >. Recursion is a powerful functional technique, hence use recursion over looping whenever possible.
+     
+         // Example: Task of counting down from 10.
+    Solution: rather than use s for loop, we can alternatively use a recursive function. As seen below
+             const countdown = (value, fn) => {
+                fn(value)
+                return (value > 0) ? countdown(value-1, fn) : value
+             }
+             countdown(10, value => console.log(value));
+
+             //10
+             // 9
+             // 8
+             // 7
+             // 6
+             // 5
+             // 4
+            // 3
+            // 2
+            // 1
+            // 0
+
+            Explanation: countdown expects a number and a function as arguments. Above this is
+            invoked with the value 10 and a callback function. When countdown is invoked, the callback is invoked, which logs the current value.
+            Next, countdown checks the value to see if it greater than o.
+            If it is, countdown recalls itself with a decremented value.
+            Eventually, the value will be 0 and the countdown will return that value all the way back up the call stack.
+     
+            !!!Important !!!
+ Browser Call Stack Limitations:
+ >. Recursion should be used over loops wherever possible, but not all JS engines are optimized for a large amount of recursion.
+ >. Too much recursion can cause Javascript errors.
+ >. These errors can be avoided by implementing advanced techniques to clear the call stack and flatten out recursive calls.
+ >. Future Javascript engines plan to eliminate call stack limitations entirely.      
+
+continuity....,
+
+>. Recursion is another  functional technique that works well with asynchronous processes.
+Functions can recall themselves when they are ready.
+   // Example:
+
+
+
+
+
+>. Recursion is a good technique for searching data structures. YOU can use recursion to iterate through subfolders until a folder containing only files 
+is identified. You can also iterate through the HTML DOM until you find an element that does not contain any children.
+    // Example:
+
+
+
+
+
+
+
+
+ f]] Composition
+
+>. Functional programs break up their logic into small, pure functions that are focused on specific tasks.
+
+
+
+
+
+
+
 
 */
