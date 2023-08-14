@@ -218,4 +218,23 @@ Types were defined by functions, where we had to create a function and then defi
 
                                     **** CommonJS ****
 
+>. CommonJS is the module pattern that is supported by all version of Node.js.
+>. With Common.JS, Javascript objects are exported using module.exports.
+   Example: ./text-helpers.js
+   
+   const print(message) => log(message, new Date())
+
+   const log(message, timestamp) =>
+       console.log(`${timestamp.toString()}: ${message}`)
+
+    module.exports = {print, log}
+
+>. CommonJS does not support an import statement, rather modules are imported with the require function:
+    Example: const{log, print} = require('./txt-helpers').
+
+            **** Final Remarks ****
+>. Most of the features included in the ES6 spec are present because they support functional programming techniques.
+>. In functional Javascript, we can think about code as being a collection of functions that can be composed into applications.
+
+
 */
