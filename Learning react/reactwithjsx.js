@@ -120,7 +120,7 @@ Note JSX looks similar to HTML.
 >. React allows us to write web applications with beautiful code.
 >. JSX provides us a nice, clean way to express React elements in our code that makes sense to us, and is readable by engineers that make up our community.
 >. A drawback for JSX is that it is not readable by the browser, as our code needs to be interpreted by the browser by being converted into pure React.
-
+ ------- (recipe breakdown in react projects repo) ----
 
                #### Into to WebPack ####
 >. When working with React in production, a lot of questions need to be answered such as;
@@ -140,9 +140,59 @@ penalty for each HTTP request. Bundling all of the dependencies into a single fi
 >. Aside form latency; webpack can also handle:
 
    a]] Code splitting
+
+>. Splits up your code into different chunks that can be loaded when you need them.
+>. Also called rollups or layers, their aim is to break up code as needed for different pages or devices.
+
    b]] Minification
+>. Removes whitespace, line breaks, lengthy variable names, and unnecessary code to reduce the file size.
+
    c]] Feature Flagging 
+>. Sends code to one or more - but not all - environments when testing out features.
+
    d]] Hot Module Replacement(HMR)
+>. Watches for changes in source code. Changes only the updated modules immediately.
+
+   ### Webpack Loaders ###
+
+>. A loader is a function that handles the transformation that we want to put our code through during the build process.
+>. The necessary loaders are specified in the webpack.config.js file, which do the work of converting the code into syntax that can be read natively by the browser
+>. One of the main use cases of loaders is transpiling from one dialect to another.
+>. Another category of loaders is for styling. The css-loader looks for files with the .scss extension and compiles them to CSS.
+>. The css-loader can be used to include CSS modules in your bundle.
+>. All CSS bundled as Javascript and automatically added when the bundled Javascript file is included, hence no need to use link elements to include stylesheets
+
+
+## Recipe App with Webpack Build
+>. Using webpack to statically build your client Javascript, makes it possible for teams to work together  on large-scale applications.
+>. Among the benefits of incorporating the webpack module bundler include;
+    
+    a]] Modularity
+
+>. By using commonJS module pattern in order to export modules that will later be imported or required by another part of the application
+makes our source code much more approachable.
+>. This subsequently allows development teams to easily work together by allowing them to create and work with separate files that will be statically combined
+ into a single file before sending to production.
+
+    b]] Composing
+
+>. With modules, we are able to build small, simple, reusable React components that we can compose efficiently into applications.
+>. Smaller components are easier to comprehend, test and reuse, and are also easier to replace down the line when enhancing your applications.
+
+    c]] Speed
+
+>. By packaging all of the applications' modules and dependencies into a single client bundle, we will be able to reduce load time of your application because
+ there is latency associated with each HTTP request.
+ >. Through packaging everything together in a single file, means that the client will only need to make a single request.
+ >. Also minifying the code in the bundle will improve the load time as well.
+
+
+    d]] Consistency
+>. The bundler also allows developers to consistently use cutting-edge Javascript syntax.
+
+Note:  ------- (recipe breakdown in react projects repo) ----
+
+
 
 
 
