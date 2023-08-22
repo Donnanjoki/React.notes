@@ -193,6 +193,51 @@ makes our source code much more approachable.
 Note:  ------- (recipe breakdown in react projects repo) ----
 
 
+     ## Note ##
+
+From: https://aglowiditsolutions.com/blog/react-webpack/
+
+>. When working on large-scale React projects, the default CRA might not be ideal as its saddled with multiple defaults that cannot be configured, hence
+a custom webpack configuration will be most ideal.
+
+ >. Benefits of React Webpack: 
+         1]]  Enhances scalability of your React app
+
+   How: webpack is a module system, also it is based on the ES6 standards with other module standards.
+        Hence, when creating a file using this module system , it automatically becomes its module with its scope.
+        Proving helpful if your project depends on various vendor dependencies.
+
+         2]] Optimizes development time with hot module replacement
+
+   How: A problem faced by developers in the past included changes not made on the web app not rendering as expected. With Hot Module Replacement
+        your page doesn't need to trigger a page reload to reflect minor changes in your JS or CSS code.
+        This replacement feature helps reduce overall development time, boosting the publishing time of your website.
+   
+         3]] Absolute control over React Build systems
+   How: Ypu are able to choose builds like Babel or Traceur for transpiling your modern code to versions supported
+   by older browsers.
+
+       >>>> Understanding how React Webpack works <<<<
+
+>. React webpack file is typically configured through a file labeled webpack.config.js (where all the configurations take place.)
+    
+    >>> React Webpack Components - What goes on under the hood <<<
+
+>. Webpack is a static module bundler; when webpack processes your applications, it internally builds a dependency graph from one or more entry points,
+and then combines every module your project needs into one or more bundles, which are static assets to serve your content from
+>. Core components of webpack include
+   
+       1]] Entry
+
+       2]] Output
+
+       3]] Loaders
+
+       4]] Plugins
+
+       5]] Mode
+
+       6]] Browser Compatibility
 
 
 
