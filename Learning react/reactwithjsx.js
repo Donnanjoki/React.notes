@@ -196,6 +196,7 @@ Note:  ------- (recipe breakdown in react projects repo) ----
      ## Note ##
 
 From: https://aglowiditsolutions.com/blog/react-webpack/
+      https://webpack.js.org/concepts/#browser-compatibility
 
 >. When working on large-scale React projects, the default CRA might not be ideal as its saddled with multiple defaults that cannot be configured, hence
 a custom webpack configuration will be most ideal.
@@ -229,18 +230,108 @@ and then combines every module your project needs into one or more bundles, whic
    
        1]] Entry
 
+       >. An entry point indicates which module webpack should use to begin its internal dependency graph.
+       >. By default its value is ./src/index.js but you can specify a different (or multiple entry points by) setting an entry property in the webpack configuration.
+
+          // Example:
+             module.exports = {
+               entry: './path/to/my/entry/file.js,
+             };
+
        2]] Output
 
+       >. This property tells webpack where to emit the bundles it creates and how to name these files.
+          It default to ./dist/main.js for the main output file and to the ./dist folder for any other generated file.
+
+
        3]] Loaders
+         
+        >. Note; webpack only understands Javascript and JSON files. 
+        >. Loaders allow webpack to process other types if files and convert them into valid modules that can be consumed 
+        by your own application and added to the dependency graph.
+             // Example: What a loader configuration would look like;
+
+                 module.exports = {
+                  entry: { ... as before }
+                  output: { ... as before },
+
+                  module: {
+                     rules: [
+                        {
+                           test: /\.[jt]sx?$/,  // matches .js, ts, .jsx and tsx files
+                           use: ['babel-loader'],,  // uses babel-loader for the specified file types
+                           include: path.resolve(_dirname, 'src'),
+                           exclude: /node_modules/,
+                        }
+                     ],
+                  }
+                 }
+               
+                Breakdown: 
+                   test : checks for specific file types 
+                   use: specifies a list of loaders used for any specific file type
+                   exclude: helps developers decide which files should not be processed
+                   include: Helps developers decide which files should be processed.
+
+        >. At higher levels loaders have two properties in your webpack configuration:
+
+            1. The test property which identifies which file or files should be transformed
+            2. The use property which indicates which loader should be used to do the transforming
+               // Example:
+                     const path = require('path');
+
+                     module.exports = {
+                        output: {
+                           filename: 'my-first-webpack.bundle.js',
+                        },
+                        module: {
+                           rules: [{ test: /\.txt$, use: 'raw-loader' }],
+                        },
+                     };
+
+            Breakdown: rules in your webpack config, are defined under modules.rules and not rules
 
        4]] Plugins
+         
+         >. Webpack leverages plugins to perform a wider range of tasks like bundle optimization, asset management and injection of environment variables.
+         >. In order to use a plugin, you need to require() it and add it to the plugins array. 
+         >. Most plugins are customizable through options, and since you can use plugin multiple times in a configuration for different purposes, you need to create an 
+         instance of it by calling it with the new operator.
+               // Example: 
+               const HtmlWebpackPlugin = require('html-webpack-plugin');
+               const webpack = require('webpack'); // to access built-in plugins
+
+               module.exports = {
+                  module: {
+                     rules: [{ test:/\.txt$/, use: 'raw-loader }],
+                  },
+                  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+               };
+
+               Breakdown: Above the html-webpack-plugin generates an HTML file for your application and automatically injects
+               all your generated bundles into this file.
+
 
        5]] Mode
+         
+       >. You can set up the mode parameter to either development, production or none, which will enable webpack's built-in optimizations that correspond to each environment.
+          The default value is production.
+
+          // Example:'module.exports = {
+            mode: 'production',
+          };
 
        6]] Browser Compatibility
 
+         >. Webpack needs Promise for import() and require.ensure(). To support older browsers you will need to load a polyfill before using the stated expressions.
 
 
+
+   <<<. Takeaway >>>.
+
+   By installing webpack you're at a better position to have complete control over the configuration and open up 
+   the scope of customization.
+   
 
 
 */
