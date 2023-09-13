@@ -277,7 +277,7 @@ https://hackernoon.com/create-react-app-is-dead-here-are-some-alternatives
 >. As of 2023 Create React App(CRA) was largely used as the go-to tool for creating new React projects as it provided a simple and easy-to-use command-line Interface(CLI)
 for setting up new React codebases, complete with a development server, automatic transpilation, and more.
 
->. Subsequently alternatives have cropped up, which offer advanced features, more flexible and customizable development experienve
+>. Subsequently alternatives have cropped up, which offer advanced features, more flexible and customizable development experience
 while being actively maintained.
 
 >. These alternatives can help improve the performance and scalability of your React application,
